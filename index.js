@@ -20,19 +20,19 @@ db.serialize(function(){
     db.run("INSERT INTO Department VALUES('Music','Packard',80000)");
     db.run("INSERT INTO Department VALUES('Physics','Watson',70000)");
 
-    //Qustion 2
+    //Question 2
     //Room number and building name for those rooms whose capacity is greater than 50
     db.each("SELECT Building, Room_number FROM Classroom WHERE Capacity > 50", function(err,row){
         console.log(row);
     });
 
-    //Qustion 3
+    //Question 3
     //Names of those departments whose budgets are greater than $85,000
     db.each("SELECT Dept_name FROM Department WHERE Budget > 85000", function(err,row){
         console.log(row);
     }); 
 
-    //Qustion 4
+    //Question 4
     //Total capacity available for each department
     db.each("SELECT d.Dept_name, SUM(c.Capacity) as 'Total capacity' FROM Classroom AS c, Department AS d WHERE d.Building = c.Building GROUP BY d.Dept_name", function(err,row){
         console.log(row);
